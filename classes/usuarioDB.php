@@ -10,8 +10,8 @@
         }
         public function login($cpf,$senha)
         {
-            $result = "SELECT *FROM cadastro WHERE cpf =? and senha =? ";
-
+            $result = "SELECT *FROM cadastro WHERE cpf =? and senha = ?";
+            // gerar o hash dentro e comparar o hash com o do db
             $stmt = mysqli_prepare($this->conexao->getConn(),$result);
             mysqli_stmt_bind_param($stmt,"ss",$cpf,$senha);
             mysqli_stmt_execute($stmt);
@@ -36,7 +36,7 @@
             mysqli_stmt_execute($stmt);
             $res = mysqli_stmt_get_result($stmt);
 
-            if(mysqli_num_rows($res)>1)
+            if(mysqli_num_rows($res)>0)
             {
                 return false;
             }
@@ -44,10 +44,8 @@
             {
                 return true;
             }
-        }
-
-        
-        public function cadastrar($nome,$sobrenome,$senha,$confirmacao_senha,$cpf,$email)
+        }  
+          public function cadastrar($nome,$sobrenome,$senha,$confirmacao_senha,$cpf,$email)
         {
 
             //filter_var (necessaria passada de dois paramentros , o nome da variavel e o metodo de s)

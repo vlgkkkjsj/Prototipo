@@ -3,15 +3,30 @@
 
 if(isset($_POST['submit']))
 {
+    include('../classes/db2.php');
+    include('../classes/animal2DB.php');
 
+    $animalDB2 = new AnimalDB2();
+
+    $nome =  filter_var(trim($_POST['nome']),FILTER_SANITIZE_STRING);
+    $sobrenome =  filter_var(trim($_POST['sobrenome']),FILTER_SANITIZE_STRING);
+    $email =  filter_var(trim($_POST['email']),FILTER_SANITIZE_STRING);
+    $nome_bichinho =  filter_var(trim($_POST['sobrenome']),FILTER_SANITIZE_STRING);
+
+    $insere = $animalDB2->cadastrarAnimal($nome,$sobrenome,$email,$nome_bichinho);
+
+    if($insere== true)
+    {
+        header('location:adote.php?success=adote');
+    }
+    else
+    {
+        header('location:adote.php?erro=erro');
+    }
+    
 }
 
-
-
 ?>
-
-
-
 
 
 <!DOCTYPE html>
@@ -25,6 +40,17 @@ if(isset($_POST['submit']))
     <link rel="stylesheet" href="../css/adote.css">
 </head>
 <body>
+    
+<?php
+      if(isset($_GET['erro'])) {
+        echo"<script>alert('erro ao enviar')</script>";
+      }
+      if(isset($_GET['success']))
+      {
+        echo"<script>alert('intuito de adoção enviado')</script>";
+      }
+?> 
+
     <header class="cabecalho">
         <button class="voltar" onclick="window.location.href='../index.php'">voltar</button>
         <img class="logo" alt="logo" src="../img/icon.png">
@@ -43,7 +69,7 @@ if(isset($_POST['submit']))
         <br>
     </div>
     <img class="img-logo-projeto" src="../img/icon.png">
-    <form class="formulario" method="POST" action="validarAdote.php">
+    <form class="formulario" method="POST" action="">
         <fieldset class="grupo">
             <div class="campo" >
                 <label for="nome"><strong>Nome</strong></label>
@@ -64,7 +90,7 @@ if(isset($_POST['submit']))
 
         <div class="campo">
             <label for="nome_bichinho" ><strong>nome bichinho</strong></label>
-                <input type="text" name="nomeAnimal" id="nomeAnimal">
+                <input type="text" name="nome_bichinho" id="nome_bichinho">
             </select>
         </div>
 

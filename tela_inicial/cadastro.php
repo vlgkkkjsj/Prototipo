@@ -2,8 +2,8 @@
 
 if(isset($_POST['submit']))
 {
-    include('../classes/db2.php');
-    include('../classes/usuarioDB.php');
+
+    
 
     $cadastro = new UsuarioDB();
 

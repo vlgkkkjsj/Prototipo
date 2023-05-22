@@ -1,7 +1,7 @@
 <?php
 
 
-class AnimalDB
+class AnimalDB2
 {
     private $conexao;
 
@@ -9,16 +9,16 @@ class AnimalDB
     {
         $this->conexao = new conexao();
     }
-    public function cadastrarAnimal($animal,$localizacao,$email,$nome_bichinho)
+    public function cadastrarAnimal($nome,$sobrenome,$email,$nome_bichinho)
     {
-       if(empty($animal) || empty($localizacao) || empty($email) || empty($nome_bichinho))
+       if(empty($nome) || empty($sobrenome) || empty($email) || empty($nome_bichinho))
        {
             print "<script>alert('ceritifique-se que informou todas as informacoes corretamente')</script>";
-            print "<script>location:formParaAdotar.php</script>";
+            print "<script>location:adote.php</script>";
        }
        else
        {
-        $result = "INSERT INTO paraadotar (animal,localizacao,email,nome_bichinho) VALUES ('{$animal}','{$localizacao}','{$email}','{$nome_bichinho}')";
+        $result = "INSERT INTO adotar (nome,sobrenome,email,nome_bichinho) VALUES ('{$nome}','{$sobrenome}','{$email}','{$nome_bichinho}')";
 
         $res = mysqli_query($this->conexao->getConn(),$result);
 

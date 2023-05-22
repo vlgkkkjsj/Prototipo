@@ -102,10 +102,15 @@
     font-size: 24px;
     color: #ffffff;
     cursor: pointer;
+    transform: scale(1);
+    transition: transform 0.5s;
 }
+
 
 .button-principal:hover{
     background-color: #ffc60b;
+    transform:scale(1.1)
+
 
 }
 

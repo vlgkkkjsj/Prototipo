@@ -11,7 +11,8 @@ class AnimalDB
     }
     public function cadastrarAnimal($animal,$localizacao,$email)
     {
-       if(empty($animal) or empty($localizacao) or empty($email))
+
+       if(empty($animal) || empty($localizacao) || empty($email))
        {
             print "<script>alert('ceritifique-se que informou todas as informacoes corretamente')</script>";
             print "<script>location:formParaAdotar.php</script>";
